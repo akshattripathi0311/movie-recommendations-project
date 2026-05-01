@@ -1,0 +1,1262 @@
+/* --- PREMIUM CINEMATIC UI --- */
+
+:root {
+    --bg-color: #0a0a0a;
+    --surface-color: #141414;
+    --text-main: #f0f0f0;
+    --text-muted: #999;
+    --accent-gold: #a87b41;
+    --glass-bg: rgba(20, 20, 20, 0.65);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Fixed: Pulled out of the * block */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-brand {
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    
+    /* The Apple TV+ / Stripe Glass Effect */
+    background: rgba(5, 5, 5, 0.75); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+}
+
+nav.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 15px 5%;
+}
+
+.nav-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-brand span {
+    color: var(--accent-gold);
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px; /* Increased breathing room */
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.65); /* Muted by default */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #ffffff; /* Bright on hover/active */
+}
+
+/* Animated Gold Underline */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--accent-gold);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 8px 15px;
+    border: 1px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.nav-search:focus-within {
+    border-color: var(--accent-gold);
+    background: rgba(255,255,255,0.15);
+}
+
+.nav-search input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    margin-left: 8px;
+    font-family: 'Inter';
+}
+
+/* --- HERO SECTION --- */
+/* --- PREMIUM HERO SECTION --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #050505;
+    overflow: hidden;
+}
+
+/* Film Grain Effect */
+.film-grain {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Background & Overlays */
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05); /* Prepped for parallax */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+        /* Deep Black Edge (Vignette) */
+        radial-gradient(circle at 30% 50%, transparent 0%, rgba(5,5,5,0.8) 100%),
+        /* Left-to-Right Text Protection */
+        linear-gradient(to right, rgba(5,5,5,1) 0%, rgba(5,5,5,0.4) 40%, transparent 100%),
+        /* Bottom Fade into next section */
+        linear-gradient(to top, rgba(5,5,5,1) 0%, transparent 30%);
+}
+
+/* Layout */
+.hero-container {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    width: 100%;
+}
+
+/* Typography Hierarchy */
+.featured-badge {
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pulse {
+    width: 8px; height: 8px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-gold);
+    animation: badge-pulse 2s infinite;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.9;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(168, 123, 65, 0.2);
+}
+
+.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* Floating Card Element */
+.hero-secondary {
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.floating-card {
+    width: 280px;
+    aspect-ratio: 2/3;
+    border-radius: 20px;
+    position: relative;
+    transform: rotateY(-15deg) rotateX(5deg);
+    transition: var(--transition-smooth);
+    box-shadow: 0 50px 80px rgba(0,0,0,0.8);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.floating-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(168, 123, 65, 0.3), transparent);
+    z-index: 2;
+}
+
+.card-meta {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+    display: flex;
+    gap: 15px;
+}
+
+.rating { color: var(--accent-gold); font-weight: 700; }
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.mouse {
+    width: 24px; height: 40px;
+    border: 2px solid var(--text-muted);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.wheel {
+    width: 3px; height: 8px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+    margin-top: 8px;
+    animation: scroll-wheel 2s infinite;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes badge-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes scroll-wheel {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
+}
+
+.fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.2, 0, 0.2, 1) forwards; }
+
+/* Mobile View */
+@media (max-width: 992px) {
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-secondary { display: none; }
+    .hero-subtitle { margin: 0 auto 40px auto; letter-spacing: 2px; }
+    .hero-title { font-size: 4.5rem; }
+}
+
+/* --- SECTION TITLES (Fixed Alignment) --- */
+/* --- SECTION TITLES (Fixed Alignment) --- */
+.section-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- UNIVERSAL SECTION TITLES (Centered Aesthetic) --- */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column; /* Puts the gold bar ABOVE the text for a premium look */
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 80px auto 40px auto;
+    text-align: center;
+}
+
+.section-title::before {
+    content: "";
+    display: block;
+    width: 60px; /* Wider horizontal bar looks better when centered */
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+    border-radius: 2px;
+}
+
+/* --- WELCOME SECTION TEXT --- */
+.welcome-text-wrapper {
+    text-align: center; /* Centers the actual paragraph text */
+    max-width: 850px;   /* Keeps text from stretching too wide and looking messy */
+    margin: 0 auto;
+}
+
+/* --- TRENDING SECTION WRAPPER --- */
+.trending-section {
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.section-title::before {
+    display: none; /* Kills any lingering center-lines */
+}
+
+/* --- TRENDING SCROLL ANIMATION (Massive Cinematic Scale) --- */
+/* --- HORIZONTAL TRENDING ROW --- */
+
+.trending-section .section-title {
+    margin-left: 5%; /* FIX: Perfectly aligns with the 5% padding of the text above it */
+}
+
+.trending-row {
+    display: flex;
+    gap: 24px; /* Normal gap */
+    overflow-x: auto;
+    padding: 20px 5%;
+    scroll-behavior: smooth;
+    transition: gap 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.6s ease;
+}
+
+.trending-row::-webkit-scrollbar {
+    display: none;
+}
+
+.trending-card {
+    min-width: 300px;
+    max-width: 300px;
+    height: 170px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease, border 0.6s ease;
+    border: 1px solid transparent;
+}
+
+.trending-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* NORMAL Hover (when not scrolled to center yet) */
+.trending-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 25px rgba(168, 123, 65, 0.25);
+}
+
+/* --- TRENDING SCROLL ANIMATION (Subtle & Aesthetic) --- */
+.trending-row.focused-scale {
+    gap: 45px; /* Creates exactly enough room for the elegant scale without overlapping */
+    padding-top: 40px; 
+    padding-bottom: 50px; 
+}
+
+.trending-row.focused-scale .trending-card {
+    transform: scale(1.08); /* A much more elegant 8% enlargement */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(168, 123, 65, 0.25);
+    border: 1px solid rgba(168, 123, 65, 0.3); /* Subtle premium border */
+}
+
+/* Hovering while it is enlarged */
+.trending-row.focused-scale .trending-card:hover {
+    transform: scale(1.12) translateY(-6px); /* Very slight extra lift on hover */
+    border-color: var(--accent-gold);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 35px rgba(168, 123, 65, 0.5);
+    z-index: 10;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .trending-card {
+        min-width: 280px;
+        max-width: 280px;
+        height: 157px;
+    }
+}
+
+/* --- CATEGORY TABS --- */
+.category-tabs {
+    display: flex;
+    justify-content: center; /* Centers the tabs perfectly */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* --- GALLERY & GRID --- */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 60px;
+}
+
+.movie-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--surface-color);
+    aspect-ratio: 2 / 3;
+    width: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border 0.4s ease;
+    border: 1px solid transparent;
+}
+
+.movie-card.skeleton {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { background-color: #1a1a1a; }
+    50% { background-color: #2a2a2a; }
+    100% { background-color: #1a1a1a; }
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.movie-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    color: var(--accent-gold);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 2;
+    border: 1px solid rgba(168, 123, 65, 0.3);
+}
+
+.fav-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    color: rgba(255,255,255,0.5);
+    background: rgba(0,0,0,0.5);
+    padding: 6px;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.fav-btn:hover, .fav-btn.active {
+    color: #ff3b30;
+    transform: scale(1.1);
+}
+
+.fav-btn.active svg {
+    fill: #ff3b30;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    width: 100%;
+    z-index: 3;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.movie-preview {
+    font-size: 0.85rem;
+    color: #ccc;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-card:hover {
+    box-shadow: 0 0 30px rgba(168, 123, 65, 0.4);
+    border: 1px solid rgba(168, 123, 65, 0.5);
+    z-index: 10;
+}
+
+.movie-card:hover img {
+    transform: scale(1.08);
+}
+
+.movie-card:hover::after {
+    opacity: 1;
+}
+
+.movie-card:hover .card-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 1024px) {
+    .movie-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
+/* --- GLASSMORPHISM MODAL --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.4s, opacity 0.4s;
+}
+
+.modal.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+
+.modal-backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--surface-color);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    z-index: 2001;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.modal-content img {
+    width: 220px;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover { color: #fff; }
+
+.modal-layout {
+    display: flex;
+    gap: 40px;
+}
+
+.modal-poster img {
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-meta {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.meta-rating {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.modal-summary {
+    line-height: 1.8;
+    color: #ccc;
+}
+
+/* --- SCROLL ANIMATIONS --- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .modal-layout { flex-direction: column; }
+    .modal-poster img { width: 100%; max-width: 200px; }
+    .hero h1 { font-size: 2.5rem; }
+    nav { flex-wrap: wrap; }
+    .nav-search { order: 3; width: 100%; margin-top: 15px; }
+}
+/* --- ABOUT & FEATURES PAGES --- */
+.page-header { margin-top: 120px; text-align: center; }
+.text-content { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; }
+
+.split-section { display: flex; gap: 50px; align-items: center; margin-top: 40px; padding: 0 5%; }
+.split-text { flex: 1; }
+.split-image { flex: 1; }
+.split-image img { width: 100%; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
+
+.feature-grid-page { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 0 5%; margin-top: 50px;}
+.feature-box { background: #141414; padding: 40px; border-radius: 15px; border: 1px solid #333; text-align: center; transition: var(--transition-smooth); }
+.feature-box:hover { transform: translateY(-5px); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(168, 123, 65, 0.15); }
+.feature-box h3 { color: var(--text-main); margin-bottom: 15px; font-size: 1.4rem; }
+.feature-box p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+@media (max-width: 768px) { .split-section { flex-direction: column; } }
+/* --- TRENDING SCROLL ANIMATION (NEW) --- */
+
+/* 1. Tell the row to transition smoothly when the gap changes */
+.trending-row {
+    transition: gap 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 2. The active class that gets added when you scroll to it */
+.trending-row.focused-scale {
+    gap: 50px; /* Pushes the cards apart to make room for scaling */
+    justify-content: center; /* Centers the group on large screens */
+    padding-top: 20px; 
+    padding-bottom: 40px; /* Extra padding so the shadow isn't cut off */
+}
+
+/* 3. Enlarge the cards */
+.trending-row.focused-scale .trending-card {
+    transform: scale(1.12); /* Cinematic zoom */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 20px rgba(168, 123, 65, 0.2);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+}
+
+/* 4. Ensure your hover effect still looks amazing while enlarged */
+.trending-row.focused-scale .trending-card:hover {
+    transform: scale(1.18) translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 35px rgba(168, 123, 65, 0.5);
+    z-index: 10;
+}
+/* --- PREMIUM ABOUT PAGE ENHANCEMENTS --- */
+
+/* 1. Add depth to the background */
+body {
+    background: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%);
+    background-attachment: fixed;
+}
+
+/* 2. Style the Title for high-end impact */
+.page-header h1 {
+    font-size: 4.5rem !important;
+    letter-spacing: -2px;
+    background: linear-gradient(to bottom, #fff 30%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* 3. The "Editorial" Glass Card */
+.about-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 60px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    margin-bottom: 100px;
+}
+
+/* 4. Artistic Image Treatment */
+.split-image img {
+    width: 100%;
+    border-radius: 15px;
+    filter: grayscale(0.2) contrast(1.1); /* Makes colors pop in a classy way */
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(168, 123, 65, 0.3);
+}
+
+.split-image {
+    position: relative;
+}
+
+/* Adds a gold glow behind the image */
+.split-image::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: var(--accent-gold);
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* 5. Gold Quote Highlight */
+.gold-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    line-height: 1.4;
+    margin: 30px 0;
+    border-left: 3px solid var(--accent-gold);
+    padding-left: 25px;
+    font-style: italic;
+}
+/* --- PREMIUM FEATURE PAGE ENHANCEMENTS --- */
+
+/* 1. Force a balanced 2x2 Grid */
+.feature-grid-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 40px;
+    max-width: 1100px;
+    margin: 50px auto 100px auto;
+    padding: 0 5%;
+}
+
+/* 2. Refined Glassmorphism Card */
+.feature-box {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 50px 40px;
+    border-radius: 24px;
+    text-align: left; /* Left align for a more professional 'tech' look */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3. The Glow Effect on Hover */
+.feature-box:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-gold);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 20px rgba(168, 123, 65, 0.1);
+}
+
+/* 4. Icon Styling */
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+    color: var(--accent-gold);
+    background: rgba(168, 123, 65, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.feature-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Mobile: Single Column for readability */
+@media (max-width: 900px) {
+    .feature-grid-page {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- PREMIUM BUTTON STANDARDIZATION --- */
+.btn-primary {
+    background: linear-gradient(135deg, #d4a85a 0%, #a87b41 100%);
+    color: #0a0a0a; /* Dark text for high contrast */
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px; /* Pill shape */
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05) translateY(-2px); /* Smooth scale and lift */
+    box-shadow: 0 8px 25px rgba(168, 123, 65, 0.4); /* Gold glow */
+    color: #000;
+}
+
+/* --- SMOOTH MODAL ANIMATIONS --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Fade in/out */
+}
+
+.modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    transform: scale(0.95); /* Start slightly smaller */
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1); /* Spring up to full size */
+    opacity: 1;
+}
+
+/* Modal Poster Fade-in Prep */
+#modalImg {
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+/* --- CINEMATIC CREATOR CREDIT --- */
+.cinematic-credit {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: -5px; /* Pulls it tight underneath the massive title */
+    margin-bottom: 30px;
+    opacity: 0; /* Prepares for fade-in */
+    animation: creditFadeIn 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.6s forwards; /* 0.6s delay so it appears after the title */
+}
+
+.credit-prefix {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 6px; /* Extreme spacing for the "A FILM BY" feel */
+    color: rgba(255, 255, 255, 0.4); /* Muted light grey */
+    padding-left: 2px; /* Optically aligns with the wider letter-spacing below */
+}
+
+.credit-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: rgba(168, 123, 65, 0.8); /* Subtle 80% opacity gold tint */
+    text-transform: uppercase;
+    font-style: italic; /* Classic movie credit feel */
+}
+
+/* Custom delayed fade-in animation */
+@keyframes creditFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Mobile Adjustment - Centers the credit when the hero shifts to center */
+@media (max-width: 992px) {
+    .cinematic-credit {
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 25px;
+    }
+    .credit-prefix {
+        letter-spacing: 4px; /* Slightly tighter on small screens */
+    }
+}
+/* --- CINEMATIC HERO TITLE & SIGNATURE --- */
+
+.hero-title-wrapper {
+    display: inline-flex;
+    align-items: baseline; /* Locks the signature to the bottom edge of the title */
+    flex-wrap: wrap;
+    gap: 15px; /* Spacing between title and signature */
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.9;
+    margin: 0; /* Margin is now handled by the wrapper */
+    color: #fff;
+    text-shadow: 0 0 30px rgba(168, 123, 65, 0.2);
+}
+
+.cinematic-signature {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Wide, cinematic spacing */
+    color: rgba(255, 255, 255, 0.7); /* Muted white at 70% opacity */
+    opacity: 0;
+    /* Soft, delayed fade-in so it appears just after the main title */
+    animation: signatureFade 2s ease-out 0.8s forwards; 
+}
+
+@keyframes signatureFade {
+    from { 
+        opacity: 0; 
+        transform: translateX(-5px); /* Very slight drift into place */
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+/* Mobile Adjustment: Tucks the signature neatly underneath if the screen is too narrow */
+@media (max-width: 768px) {
+    .hero-title-wrapper {
+        justify-content: center;
+        gap: 8px;
+    }
+    .cinematic-signature {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+}
+/* --- PERFECT HERO TYPOGRAPHY STACK --- */
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.9;
+    margin-bottom: 15px; /* Perfect breathing room above signature */
+    color: #fff;
+    text-shadow: 0 0 30px rgba(168, 123, 65, 0.2);
+}
+
+/* --- THE CINEMATIC SIGNATURE --- */
+.cinematic-signature {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between the line and your name */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem; /* Smaller than subtitle */
+    font-weight: 400; /* Light/Medium weight */
+    text-transform: uppercase;
+    letter-spacing: 6px; /* Extreme cinematic spacing */
+    color: rgba(168, 123, 65, 0.85); /* Premium gold tint at 85% opacity */
+    margin-bottom: 35px; /* Consistent spacing before the subtitle */
+    padding-left: 4px; /* Optical alignment fix for the curve of the 'C' above it */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); /* Readability against bright backgrounds */
+    
+    /* Subtle fade-in animation */
+    opacity: 0;
+    animation: signatureFadeIn 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.8s forwards;
+}
+
+/* The Premium Cinematic Line */
+.cinematic-signature::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 1px;
+    background-color: rgba(168, 123, 65, 0.6);
+}
+
+.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+/* Animation Keyframes */
+@keyframes signatureFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* --- BUTTON FIX & INTERACTION --- */
+.btn-primary {
+    background: linear-gradient(135deg, #d4a85a 0%, #a87b41 100%);
+    color: #050505;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05); /* Slight scale */
+    box-shadow: 0 8px 25px rgba(168, 123, 65, 0.5); /* Soft gold glow */
+    color: #000;
+}
+
+.btn-primary:active {
+    transform: scale(0.98); /* Active press effect */
+    box-shadow: 0 4px 10px rgba(168, 123, 65, 0.3);
+}
+
+/* --- PREMIUM EDITORIAL WELCOME SECTION --- */
+.welcome-section {
+    padding: 120px 5%;
+    /* Subtle radial glow matching the cinematic aesthetic */
+    background: radial-gradient(circle at top center, rgba(30, 30, 30, 0.4) 0%, #050505 80%);
+    position: relative;
+}
+
+.welcome-container {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+    /* Ultra-subtle Glass Panel */
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 70px 60px;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 40px rgba(168, 123, 65, 0.2); /* Soft gold backlight */
+}
+
+.gold-divider {
+    width: 50px;
+    height: 2px;
+    background: var(--accent-gold, #a87b41);
+    border: none;
+    margin: 0 auto 40px auto;
+    border-radius: 2px;
+}
+
+/* Typography Hierarchy */
+.welcome-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    font-style: italic;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.welcome-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85; /* Improved breathing room */
+    color: #999999;
+    margin-bottom: 25px;
+}
+
+.welcome-text:last-child {
+    margin-bottom: 0;
+}
+
+.gold-highlight {
+    color: var(--accent-gold, #a87b41);
+    font-weight: 500;
+}
+
+/* Scroll Animation Base */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: opacity, transform;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .welcome-container {
+        padding: 40px 25px;
+    }
+    .welcome-title {
+        font-size: 2.2rem;
+    }
+    .welcome-quote {
+        font-size: 1.2rem;
+        padding: 0;
+    }
+}

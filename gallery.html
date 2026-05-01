@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVault | Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav id="navbar">
+        <div class="nav-brand">CineVault<span>.</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="features.html">Features</a>
+            <a href="gallery.html" class="active">Archive</a>
+        </div>
+        <div class="nav-search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Search titles...">
+        </div>
+    </nav>
+
+    <!-- Main Gallery -->
+    <section id="gallery" class="gallery-section container fade-in-section" style="margin-top: 120px;">
+        <h2 class="section-title">Curated Archive</h2>
+        
+        <div class="category-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="thriller">Thriller</button>
+            <button class="tab-btn" data-filter="drama">Drama</button>
+            <button class="tab-btn" data-filter="scifi">Sci-Fi</button>
+            <button class="tab-btn" data-filter="action">Action</button>
+        </div>
+
+        <div class="movie-grid" id="movieGrid">
+            
+            <!-- THRILLER -->
+            <div class="movie-card skeleton" data-genre="thriller" onclick="openModal('Se7en', 'Andrew Kevin Walker', '8.6', 'Two detectives hunt a serial killer who uses the seven deadly sins as his motives.', 'https://s3.amazonaws.com/nightjarprod/content/uploads/sites/348/2024/12/17134808/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg')">
+                <div class="rating-badge">8.6</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://s3.amazonaws.com/nightjarprod/content/uploads/sites/348/2024/12/17134808/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg" alt="Se7en" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Se7en</h3><p class="movie-preview">Two detectives hunt a killer using the seven deadly sins...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="thriller" onclick="openModal('Parasite', 'Bong Joon Ho', '8.5', 'Greed and class discrimination threaten a symbiotic relationship between a wealthy family and a destitute clan.', 'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg')">
+                <div class="rating-badge">8.5</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Parasite</h3><p class="movie-preview">Greed and class discrimination threaten a symbiotic relationship...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="thriller" onclick="openModal('Prisoners', 'Aaron Guzikowski', '8.1', 'When a young girl and her friend go missing, a desperate father takes matters into his own hands.', 'https://image.tmdb.org/t/p/w500/jsAynhbxcA02B1kI55T6p6T7o9.jpg')">
+                <div class="rating-badge">8.1</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://img.rgstatic.com/content/movie/7e533a65-ef0f-4222-8dcc-ee2b58037f25/poster-342.jpg" alt="Prisoners" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Prisoners</h3><p class="movie-preview">A desperate father takes matters into his own hands...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="thriller" onclick="openModal('Shutter Island', 'Laeta Kalogridis', '8.2', 'A U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.', 'https://image.tmdb.org/t/p/w500/kve20tXwUZpu4GUX8l6X7Z4jmL6.jpg')">
+                <div class="rating-badge">8.2</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/kve20tXwUZpu4GUX8l6X7Z4jmL6.jpg" alt="Shutter Island" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Shutter Island</h3><p class="movie-preview">A marshal investigates a disappearance at a mental hospital...</p></div>
+            </div>
+
+            <!-- DRAMA -->
+            <div class="movie-card skeleton" data-genre="drama" onclick="openModal('The Godfather', 'Mario Puzo', '9.2', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg')">
+                <div class="rating-badge">9.2</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">The Godfather</h3><p class="movie-preview">The patriarch of a crime dynasty transfers control...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="drama" onclick="openModal('The Shawshank Redemption', 'Frank Darabont', '9.3', 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', 'https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg')">
+                <div class="rating-badge">9.3</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg" alt="Shawshank" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Shawshank</h3><p class="movie-preview">Two imprisoned men bond over a number of years...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="drama" onclick="openModal('Fight Club', 'Jim Uhls', '8.8', 'An insomniac office worker and a devil-may-care soap maker form an underground fight club.', 'https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg')">
+                <div class="rating-badge">8.8</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg" alt="Fight Club" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Fight Club</h3><p class="movie-preview">An office worker and a soap maker form a fight club...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="drama" onclick="openModal('Whiplash', 'Damien Chazelle', '8.5', 'A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing.', 'https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg')">
+                <div class="rating-badge">8.5</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg" alt="Whiplash" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Whiplash</h3><p class="movie-preview">A young drummer enrolls at a cut-throat conservatory...</p></div>
+            </div>
+
+            <!-- SCI-FI -->
+            <div class="movie-card skeleton" data-genre="scifi" onclick="openModal('Interstellar', 'Jonathan Nolan', '8.7', 'A team of explorers travel through a wormhole in space in an attempt to ensure the survival of humanity.', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg')">
+                <div class="rating-badge">8.7</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg" alt="Interstellar" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Interstellar</h3><p class="movie-preview">Explorers travel through a wormhole in space...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="scifi" onclick="openModal('Inception', 'Christopher Nolan', '8.8', 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg')">
+                <div class="rating-badge">8.8</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg" alt="Inception" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Inception</h3><p class="movie-preview">A thief steals corporate secrets through dream-sharing...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="scifi" onclick="openModal('Blade Runner 2049', 'Hampton Fancher', '8.0', 'A young blade runner discovers a long-buried secret that leads him to track down former blade runner Rick Deckard.', 'https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg')">
+                <div class="rating-badge">8.0</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg" alt="Blade Runner 2049" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Blade Runner 2049</h3><p class="movie-preview">A young blade runner discovers a long-buried secret...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="scifi" onclick="openModal('The Matrix', 'The Wachowskis', '8.7', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg')">
+                <div class="rating-badge">8.7</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg" alt="The Matrix" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">The Matrix</h3><p class="movie-preview">A hacker learns the true nature of his reality...</p></div>
+            </div>
+
+            <!-- ACTION -->
+            <div class="movie-card skeleton" data-genre="action" onclick="openModal('The Dark Knight', 'Jonathan Nolan', '9.0', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability.', 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg')">
+                <div class="rating-badge">9.0</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="The Dark Knight" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">The Dark Knight</h3><p class="movie-preview">Batman faces a psychological test against the Joker...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="action" onclick="openModal('Mad Max: Fury Road', 'George Miller', '8.1', 'In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland with the aid of a group of female prisoners.', 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Mad_Max_Fury_Road.jpg/250px-Mad_Max_Fury_Road.jpg')">
+                <div class="rating-badge">8.1</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Mad_Max_Fury_Road.jpg/250px-Mad_Max_Fury_Road.jpg" alt="Mad Max" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Mad Max</h3><p class="movie-preview">In a post-apocalyptic wasteland, a woman rebels...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="action" onclick="openModal('John Wick', 'Derek Kolstad', '7.4', 'An ex-hit-man comes out of retirement to track down the gangsters that killed his dog and took his car.', 'https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg')">
+                <div class="rating-badge">7.4</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg" alt="John Wick" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">John Wick</h3><p class="movie-preview">An ex-hit-man comes out of retirement to track down...</p></div>
+            </div>
+
+            <div class="movie-card skeleton" data-genre="action" onclick="openModal('Gladiator', 'David Franzoni', '8.5', 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.', 'https://www.moxiecinema.com/uploads/films/_cover/Gladiator-poster.jpg')">
+                <div class="rating-badge">8.5</div>
+                <div class="fav-btn" onclick="toggleFav(event, this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <img src="https://www.moxiecinema.com/uploads/films/_cover/Gladiator-poster.jpg" alt="Gladiator" loading="lazy" onload="removeSkeleton(this)">
+                <div class="card-overlay"><h3 class="movie-title">Gladiator</h3><p class="movie-preview">A former Roman General seeks vengeance in the arena...</p></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Glassmorphism Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-layout">
+                <div class="modal-poster">
+                    <img id="modalImg" src="" alt="Movie Poster">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Movie Title</h2>
+                    <div class="modal-meta">
+                        <span class="meta-rating" id="modalRating">★ 0.0</span>
+                        <span class="meta-writer">Written by <strong id="modalWriter">Name</strong></span>
+                    </div>
+                    <p class="modal-summary" id="modalSummary">Summary goes here.</p>
+                    <button class="btn-primary" style="margin-top: 20px;">Watch Trailer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

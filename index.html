@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVault | Home</title>
+    <!-- Modern Font Pairing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sticky Navbar -->
+    <nav id="navbar">
+        <div class="nav-brand">CineVault<span>.</span></div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="features.html">Features</a>
+            <a href="gallery.html">Archive</a>
+        </div>
+        <div class="nav-search">
+            <!-- Inline SVG for Search Icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Search titles, writers...">
+        </div>
+    </nav>
+
+    <section class="hero">
+    <!-- Film Grain Overlay -->
+    <div class="film-grain"></div>
+    
+    <!-- Cinematic Lighting & Background -->
+    <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000" alt="Cinematic Background">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-container">
+        <!-- Main Content -->
+        <div class="hero-content">
+            <div class="featured-badge fade-in">
+                <span class="pulse"></span> Now Streaming
+            </div>
+            <!-- Replace your standalone <h1> with this integrated title group -->
+            <h1 class="hero-title fade-in-up">CineVault</h1>
+            <div class="cinematic-signature">by Akshat Tripathi</div>
+            <p class="hero-subtitle fade-in-up">Unlock the World of Cinema</p>
+            
+            
+            <div class="hero-btns fade-in-up">
+                <button class="btn-primary" onclick="window.location.href='gallery.html'">Explore Archive</button>
+            </div>
+        </div>
+
+        <!-- Floating Premium Element -->
+        <div class="hero-secondary fade-in-right">
+            <div class="floating-card">
+                <div class="card-glow"></div>
+                <img src="https://image.tmdb.org/t/p/w500/8GxvA9zDZUG6uCRhvSj1GPpPm6N.jpg" alt="Featured Poster">
+                <div class="card-meta">
+                    <span class="rating">★ 9.4</span>
+                    <span class="year">2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+    </div>
+</section>
+
+    <!-- Professor's Requirement: Intro & Why I Chose It (180+ Words) -->
+    <!-- 2. THE PREMIUM WELCOME SECTION -->
+<section class="welcome-section">
+    <!-- Subtle Glassmorphism Container with Fade Animation -->
+    <div class="welcome-container fade-in-up">
+        
+        <h2 class="welcome-title">Welcome to the Vault</h2>
+        <hr class="gold-divider">
+        
+        <!-- Cinematic Pull Quote -->
+        <p class="welcome-quote">
+            "In a digital era overwhelmed by endless streaming choices and interface clutter, finding a truly exceptional film can feel like an impossible task."
+        </p>
+        
+        <!-- Broken down, readable paragraphs -->
+        <p class="welcome-text">
+            This website was built as a premium, distraction-free space dedicated entirely to the art of storytelling. We bypass the noise to showcase only the absolute best, critically acclaimed films and series. I chose to build this specific project because cinema is arguably the most powerful narrative medium of our modern time.
+        </p>
+        
+        <p class="welcome-text">
+            By focusing heavily on genres that push boundaries—like psychological thrillers, expansive sci-fi, and high-stakes dramas—<span class="gold-highlight">this platform honors the talented writers and visionary directors</span> who craft these intricate narratives.
+        </p>
+        
+        <p class="welcome-text">
+            Our goal is to <span class="gold-highlight">preserve the legacy of these masterpieces</span> in a sleek, cinematic digital museum. Navigate through our curated collections, explore the minds behind the scripts, and discover your next unforgettable viewing experience.
+        </p>
+        
+    </div>
+</section>
+
+<!-- Trending Row (Horizontal Scroll) -->
+    <section id="trending" class="trending-section fade-in-section">
+        <div class="container">
+            <h2 class="section-title" style="margin-left: 0;">Trending Series</h2>
+        </div>
+        <div class="trending-row">
+            
+            <!-- Series 1: The Last of Us -->
+            <div class="trending-card" onclick="openModal('The Last of Us', 'Craig Mazin', '8.7', 'After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be the last hope for humanity.', 'https://m.media-amazon.com/images/M/MV5BYWI3ODJlMzktY2U5NC00ZjdlLWE1MGItNWQxZDk3NWNjN2RhXkEyXkFqcGc@._V1_.jpg')">
+                <img src="https://beam-images.warnermediacdn.com/2025-03/the-last-of-us-s2-og-image.jpg?host=wbd-dotcom-drupal-prd-us-east-1.s3.amazonaws.com" alt="The Last of Us" loading="lazy">
+            </div>
+
+            <!-- Series 2: Stranger Things -->
+            <div class="trending-card" onclick="openModal('Stranger Things', 'The Duffer Brothers', '8.7', 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.', 'https://dnm.nflximg.net/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABQEq9p8KKh4cDljpOPBvnme-VOdV0kO-1mqfBIHlUbqQHGNOpERWh3cjE_J6UitiD-6dryVOoz1HyEp_ab_vT4popBXwkpea8YFU.jpg?r=e8a')">
+                <img src="https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/35042/article_full%401x.jpg" alt="Stranger Things" loading="lazy">
+            </div>
+
+            <div class="trending-card" onclick="openModal('Game of Thrones', 'David Benioff', '9.2', 'Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.', 'https://beam-images.warnermediacdn.com/2025-07/daenarys-1920.jpg?host=wbd-dotcom-drupal-prd-us-east-1.s3.amazonaws.com')">
+            <img src="https://images.immediate.co.uk/production/volatile/sites/3/2019/02/1-2-ac324ad.jpg?quality=90&resize=980,654" alt="Game of Thrones" loading="lazy">
+            </div>
+
+            <div class="trending-card" onclick="openModal('Breaking Bad', 'Vince Gilligan', '9.5', 'A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure the future of his family.', 'https://image.tmdb.org/t/p/w500/3xnWaLQjelJDDF7LT1WBo6f4BRe.jpg')">
+            <img src="https://image.tmdb.org/t/p/w780/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg" alt="Breaking Bad" loading="lazy">
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Glassmorphism Modal (Kept here so Trending cards still click open!) -->
+    <div id="movieModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-layout">
+                <div class="modal-poster">
+                    <img id="modalImg" src="" alt="Movie Poster">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Movie Title</h2>
+                    <div class="modal-meta">
+                        <span class="meta-rating" id="modalRating">★ 0.0</span>
+                        <span class="meta-writer">Written by <strong id="modalWriter">Name</strong></span>
+                    </div>
+                    <p class="modal-summary" id="modalSummary">Summary goes here.</p>
+                    <!-- Inside your #movieModal block -->
+                    <button class="btn-primary" style="margin-top: 25px;">Watch Trailer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
